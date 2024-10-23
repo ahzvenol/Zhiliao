@@ -15,7 +15,6 @@ import com.shatyuka.zhiliao.hooks.NextAnswer;
 import com.shatyuka.zhiliao.hooks.RedDot;
 import com.shatyuka.zhiliao.hooks.SearchAd;
 import com.shatyuka.zhiliao.hooks.ShareAd;
-import com.shatyuka.zhiliao.hooks.StatusBar;
 import com.shatyuka.zhiliao.hooks.Tag;
 import com.shatyuka.zhiliao.hooks.ThirdPartyLogin;
 import com.shatyuka.zhiliao.hooks.VIPBanner;
@@ -154,11 +153,6 @@ public class HookTest {
     @Test
     public void searchAdTest() {
         checkHook(new SearchAd());
-    }
-
-    @Test
-    public void statusBarTest() {
-        checkHook(new StatusBar());
     }
 
     @Test

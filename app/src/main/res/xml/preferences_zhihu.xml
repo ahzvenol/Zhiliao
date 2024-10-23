@@ -134,12 +134,6 @@
         <com.zhihu.android.app.ui.widget.SwitchPreference
             android:defaultValue="false"
             android:dependency="switch_mainswitch"
-            android:key="switch_statusbar"
-            android:title="状态栏沉浸"
-            android:summary="沉浸式状态栏"/>
-        <com.zhihu.android.app.ui.widget.SwitchPreference
-            android:defaultValue="false"
-            android:dependency="switch_mainswitch"
             android:key="switch_fullscreen"
             android:title="禁止进入全屏模式"
             android:summary="看看时间"/>

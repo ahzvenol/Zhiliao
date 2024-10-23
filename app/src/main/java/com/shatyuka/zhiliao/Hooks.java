@@ -30,7 +30,6 @@ import com.shatyuka.zhiliao.hooks.PanelBubble;
 import com.shatyuka.zhiliao.hooks.RedDot;
 import com.shatyuka.zhiliao.hooks.SearchAd;
 import com.shatyuka.zhiliao.hooks.ShareAd;
-import com.shatyuka.zhiliao.hooks.StatusBar;
 import com.shatyuka.zhiliao.hooks.Tag;
 import com.shatyuka.zhiliao.hooks.ThirdPartyLogin;
 import com.shatyuka.zhiliao.hooks.TopstoryBanner;
@@ -58,7 +57,6 @@ public class Hooks {
             new Article(),
             new Tag(),
             new SearchAd(),
-            new StatusBar(),
             new ThirdPartyLogin(),
             new NavRes(),
             new WebView(),

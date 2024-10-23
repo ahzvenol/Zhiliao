@@ -1,6 +1,8 @@
 package com.shatyuka.zhiliao.hooks
 
 import com.shatyuka.zhiliao.Helper
+import de.robv.android.xposed.XC_MethodHook
+import de.robv.android.xposed.XC_MethodHook.MethodHookParam
 import de.robv.android.xposed.XC_MethodReplacement.DO_NOTHING
 import de.robv.android.xposed.XC_MethodReplacement.returnConstant
 import de.robv.android.xposed.XposedBridge.hookMethod
@@ -14,6 +16,11 @@ class LaunchAd : BaseHook() {
     private var isShowLaunchAd: Method? = null
     private var resolveAdvert: Method? = null
 
+    /**
+     * https://api.zhihu.com/commercial_api/app_float_layer
+     */
+    private var adFeedFloatClass: Class<*>? = null
+
     override fun getName(): String {
         return "去启动页广告"
     }
@@ -23,6 +30,12 @@ class LaunchAd : BaseHook() {
         chooseAdUrl = findChooseAdUrlMethod(classLoader)
         isShowLaunchAd = findIsShowLaunchAdMethod(classLoader)
         resolveAdvert = findResolveAdvertMethod(classLoader)
+
+        try {
+            adFeedFloatClass = classLoader.loadClass("com.zhihu.android.adbase.model.AdFeedFloat")
+        } catch (e: Exception) {
+            logE(e)
+        }
     }
 
     @Throws(Throwable::class)
@@ -44,6 +57,19 @@ class LaunchAd : BaseHook() {
         // 首页开屏浮动广告
         if (resolveAdvert != null) {
             hookMethod(resolveAdvert, DO_NOTHING)
+        }
+
+        if (adFeedFloatClass != null) {
+            hookMethod(Helper.JacksonHelper.ObjectReader_readValue, object : XC_MethodHook() {
+                override fun afterHookedMethod(param: MethodHookParam) {
+                    if (param.result == null) {
+                        return
+                    }
+                    if (param.result.javaClass == adFeedFloatClass) {
+                        param.result = null
+                    }
+                }
+            })
         }
     }
 

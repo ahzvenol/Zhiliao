@@ -456,7 +456,6 @@ public class ZhihuPreference implements IHook {
                 setIcon.invoke(switch_externlinkex, Helper.modRes.getDrawable(R.drawable.ic_link));
                 setIcon.invoke(findPreference.invoke(thisObject, "switch_colormode"), Helper.modRes.getDrawable(R.drawable.ic_color));
                 setIcon.invoke(switch_tag, Helper.modRes.getDrawable(R.drawable.ic_label));
-                setIcon.invoke(findPreference.invoke(thisObject, "switch_statusbar"), Helper.modRes.getDrawable(R.drawable.ic_fullscreen));
                 setIcon.invoke(switch_fullscreen, Helper.modRes.getDrawable(R.drawable.ic_fullscreen_exit));
                 setIcon.invoke(switch_thirdpartylogin, Helper.modRes.getDrawable(R.drawable.ic_login));
                 setIcon.invoke(switch_reddot, Helper.modRes.getDrawable(R.drawable.ic_mark_chat_unread));
@@ -641,22 +640,6 @@ public class ZhihuPreference implements IHook {
                         InputMethodManager imm = (InputMethodManager) Helper.context.getSystemService(Activity.INPUT_METHOD_SERVICE);
                         imm.hideSoftInputFromWindow(view.getRootView().getWindowToken(), 0);
                     }
-                }
-            }
-        });
-
-        XposedHelpers.findAndHookMethod(SettingsFragment, "onViewCreated", View.class, Bundle.class, new XC_MethodHook() {
-            @Override
-            protected void afterHookedMethod(MethodHookParam param) {
-                Helper.settingsView = param.args[0];
-            }
-        });
-
-        XposedHelpers.findAndHookMethod(BasePreferenceFragment, "onDestroyView", new XC_MethodHook() {
-            @Override
-            protected void afterHookedMethod(MethodHookParam param) {
-                if (param.thisObject.getClass() == SettingsFragment) {
-                    Helper.settingsView = null;
                 }
             }
         });

@@ -55,8 +55,6 @@ public class Helper {
     public static Resources modRes;
     public static PackageInfo zhihuPackageInfo;
 
-    public static Object settingsView;
-
     public static boolean officialZhihu = true;
 
     public final static String hookPackage = "com.zhihu.android";
